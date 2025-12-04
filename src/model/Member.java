@@ -1,6 +1,9 @@
 package model;
 
 public class Member {
+
+  //Variables
+  
   private String name;
   private int ID;
   private String password;
@@ -13,9 +16,15 @@ public class Member {
   private boolean suspended;
 
   //Constructors
+  
   public Member() {}
   
-  public Member(String name, int ID, String password = "", boolean suspended = false) {
+  public Member(String name, int ID) {
+    this.name = name;
+    this.ID = ID;
+  }
+  
+  public Member(String name, int ID, String password, boolean suspended) {
     this.name = name;
     this.ID = ID;
     this.password = password;
@@ -23,26 +32,62 @@ public class Member {
   }
 
   //Public Methods
-  public Login(String inID, String inPassword) {
-    if (inID == this.ID) && (inPassword == this.password) return true;
+  
+  public boolean login(int inID, String inPassword) {
+    if ((inID == this.ID) && (inPassword.equals(this.password))) return true;
     return false;
   }
 
-  public SetInfo(String name, int ID, string password, boolean suspended = this.suspended) {
+  //Setters
+
+  public void setInfo(String name, int ID, String password) {
     this.name = name;
     this.ID = ID;
     this.password = password;
-    this.suspended = suspended;
   }
 
-  public SetAddress(String address, String city, String state, string zip) {
+  public void setAddress(String address, String city, String state, String zip) {
     this.address = address;
     this.city = city;
     this.state = state;
     this.zip = zip;
   }
 
-  public SetStatus(boolean suspended) {
+  public void setStatus(boolean suspended) {
     this.suspended = suspended;
+  }
+
+  //Getters
+
+  public String getName() {
+    return this.name;
+  }
+
+  public int getID() {
+    return this.ID;
+  }
+
+  public String getPassword() {
+    return this.password;
+  }
+
+  public String getAddress() {
+    return this.address;
+  }
+
+  public String getCity() {
+    return this.city;
+  }
+
+  public String getState() {
+    return this.state;
+  }
+
+  public String getZip() {
+    return this.zip;
+  }
+
+  public boolean getSuspended() {
+    return this.suspended;
   }
 }
