@@ -1,3 +1,4 @@
+package data;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -9,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-
-package data;
 
 /**
  * ProviderDirectory manages a collection of services (name, code, fee).
@@ -156,4 +155,5 @@ public class ProviderDirectory {
     }
 }  */
 }
+
 
