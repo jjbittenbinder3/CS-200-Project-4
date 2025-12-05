@@ -39,7 +39,7 @@ public class ProviderService {
                 String zip = p[6];
                 boolean suspended = Boolean.parseBoolean(p[7]);
 
-                Provider p = new Provider(name, id, password, suspended); //here
+                Provider p = new Provider(name, id, password, suspended);
                 m.setAddress(address, city, state, zip);
 
                 providers.put(id, m);
@@ -54,7 +54,7 @@ public class ProviderService {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
 
             for (Provider p : providers.values()) {
-                bw.write( //here
+                bw.write(
                     p.getID() + "," +
                     p.getName() + "," +
                     p.getPassword() + "," +
