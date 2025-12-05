@@ -25,6 +25,7 @@ public class LoginController {
         break;
       default:
         break;
-    } 
+    }
+    return true;
   }
 }
