@@ -18,7 +18,32 @@ public class Service {
     this.fee = fee;
   }
   
-  // Getters and setters
+  //Setters
 
+  public void setName(String name) {
+    this.name = name;
+  }
+  
+  public void setCode(int code) {
+    this.code = code;
+  }
+  
+  public void setFee(int Fee) {
+    this.fee = fee;
+  }
+  
+  //Getters
+
+  public String getName() {
+    return this.name;
+  }
+
+  public int getCode() {
+    return this.code;
+  }
+
+  public int getFee() {
+    return this.fee;
+  }
   
 }
