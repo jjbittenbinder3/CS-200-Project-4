@@ -3,9 +3,7 @@ package controller
 import java.util.Scanner;
 
 public class MainMenuController {
-  public MainMenuontroller() {}
-  
-  public void showMainMenu() {
+  public MainMenuontroller() {
     System.out.println("1. Operator Menu");
     System.out.println("2. Provider Menu");
     System.out.println("3. Manager Menu");
