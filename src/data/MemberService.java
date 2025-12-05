@@ -1,3 +1,7 @@
+/*
+    Author: Jackson Lammons
+*/
+
 package data;
 
 import model.Member;
