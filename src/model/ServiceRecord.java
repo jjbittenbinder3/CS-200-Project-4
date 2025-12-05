@@ -13,16 +13,16 @@ public class ServiceRecord {
 
   private String dateBilled;
   private String dateProvided;
-  private Provider provider;
-  private Member member;
-  private Service service;
+  private String provider;
+  private String member;
+  private int service;
   private String comments;
 
   //Constructors
   
   public ServiceRecord() {}
 
-  public ServiceRecord(String dateProvided, Provider provider, Member member, Service service) {
+  public ServiceRecord(String dateProvided, String provider, String member, int service) {
     this.dateBilled = getTime();
     this.dateProvided = dateProvided;
     this.provider = provider;
@@ -31,7 +31,7 @@ public class ServiceRecord {
     this.comments = "";
   }
 
-  public ServiceRecord(String dateProvided, Provider provider, Member member, Service service, String comments) {
+  public ServiceRecord(String dateProvided, String provider, String member, int service, String comments) {
     this.dateBilled = getTime();
     this.dateProvided = dateProvided;
     this.provider = provider;
@@ -58,15 +58,15 @@ public class ServiceRecord {
     return dateProvided;
   }
 
-  public Provider getProvider() {
+  public String getProvider() {
     return provider;
   }
 
-  public Member getMember() {
+  public String getMember() {
     return member;
   }
   
-  public Service getService() {
+  public int getService() {
     return service;
   }
   
@@ -86,9 +86,9 @@ public class ServiceRecord {
     String result = "";
     result += dateProvided + "\n";
     result += dateBilled + "\n";
-    result += provider.getID() + "\n";
-    result += member.getID() + "\n";
-    result += service.getCode() + "\n";
+    result += provider + "\n";
+    result += member + "\n";
+    result += service + "\n";
     result += comments + "\n";
     return result;
   }
