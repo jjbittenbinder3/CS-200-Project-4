@@ -66,7 +66,7 @@ public class ManagerService {
         }
     }
 
-    public Manager getManagers(int id) {
+    public Manager getManager(int id) {
         return managers.get(id);
     }
 
