@@ -8,6 +8,7 @@ import java.util.Scanner;
 import data.MemberService;
 import reports.MemberReport;
 import data.ProviderDirectory;
+import model.ServiceRecord;
 
 
 public class ProviderMenuController {
@@ -19,7 +20,8 @@ public class ProviderMenuController {
   }
   
   private void showMenu() {
-    int status = new LoginController().login(LoginController.Type.PROVIDER);
+    int providerID = 0;
+    int status = new LoginController().login(LoginController.Type.PROVIDER, providerID);
     switch (status) {
       case 0:
         System.out.println("Invalid provider ID entered.");
@@ -41,7 +43,7 @@ public class ProviderMenuController {
         while (true) {
             System.out.println("\n===== Operator Menu =====");
             System.out.println("1. Bill Member");
-            System.out.println("2. Remove Member");
+            System.out.println("2. Generate Report");
             System.out.println("3. Update Member");
             System.out.println("4. Validate Member");
             System.out.println("5. Generate Member Report");
@@ -89,12 +91,34 @@ public class ProviderMenuController {
 
         System.out.print("Enter the date the service was provided in the following format: MM–DD–YYYY: ");
         String provideDate = scanner.nextLine();
-        System.out.print("Please enter the appropraite service code: ");
-        String serviceCode = scanner.nextLine();
-        if(directory.(enterServiceCode).equals("error")){
+        while(true)
+        {
+            System.out.print("Please enter the appropriate service code: ");
+            String sc = scanner.nextLine();
+            int serviceCode = Integer.parseInt(sc);
+            while(directory.enterServiceCode(serviceCode).equals("error"))
+            {
+                System.out.print("The ID you entered is not a valid service code. Please try again: ");
+                sc = scanner.nextLine();
+                serviceCode = Integer.parseInt(sc);
+            }
+            String activity = directory.enterServiceCode(serviceCode);
+            System.out.println("The service provided was: " + activity + " ,is this correct?(y/n)");
+            String response = scanner.nextLine();
+            if(response.equals("n")){
+                continue;
+            }
+            else{
+                break;
+            }
 
         }
-        else if
+        System.out.println("Optional: You may enter a comment to attach to this record (100 character limit). Press Enter to continue: ");
+        String comment = scanner.nextLine();
+        comment = comment.substring(0, 100);
+
+        ServiceRecord sr = new ServiceRecord(provideDate, providerID);
+
 
 
         System.out.print("Address: ");
