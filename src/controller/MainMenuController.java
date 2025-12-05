@@ -1,3 +1,7 @@
+/*
+  Author: James Pepper
+*/
+
 package controller;
 
 import java.util.Scanner;
