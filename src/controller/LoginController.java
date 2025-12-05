@@ -24,7 +24,7 @@ public class LoginController {
     return 1 = password invalid
     return 2 = valid
   */
-  public int login(Type loginType) {
+  public int login(Type loginType, int& inputID) {
     Scanner scan = new Scanner(System.in);
     int inID = 0;
     String inPass = "";
@@ -36,6 +36,7 @@ public class LoginController {
         Member mem = new MemberService().getMember(inID);
         if (mem == null) return 0;
           System.out.print("Enter password: ");
+          inputID = inID;
           inPass = scan.nextLine();
         if (!mem.getPassword().equals(inPass)) return 1;
         return 2;
@@ -46,6 +47,7 @@ public class LoginController {
         Operator op = new OperatorService().getOperator(inID);
         if (op == null) return 0;
           System.out.print("Enter password: ");
+          inputID = inID;
           inPass = scan.nextLine();
         if (!op.getPassword().equals(inPass)) return 1;
         return 2;
@@ -56,6 +58,7 @@ public class LoginController {
         Provider prov = new ProviderService().getProvider(inID);
         if (prov == null) return 0;
           System.out.print("Enter password: ");
+          inputID = inID;
           inPass = scan.nextLine();
         if (!prov.getPassword().equals(inPass)) return 1;
         return 2;
@@ -66,6 +69,7 @@ public class LoginController {
         Manager man = new ManagerService().getManager(inID);
         if (man == null) return 0;
           System.out.print("Enter password: ");
+          inputID = inID;
           inPass = scan.nextLine();
         if (!man.getPassword().equals(inPass)) return 1;
         return 2;
