@@ -1,9 +1,9 @@
-package controller
+package controller;
 
 import java.util.Scanner;
 
 public class MainMenuController {
-  public MainMenuontroller() {
+  public MainMenuController() {
     System.out.println("1. Operator Menu");
     System.out.println("2. Provider Menu");
     System.out.println("3. Manager Menu");
@@ -15,13 +15,13 @@ public class MainMenuController {
 
     swtich (input) {
       case 1:
-        OperatorMenuController menu = new OperatorMenuController();
+        OperatorMenuController menu1 = new OperatorMenuController();
         break;
       case 2:
-        ProviderMenuController menu = new ProviderMenuController();
+        ProviderMenuController menu2 = new ProviderMenuController();
         break;
       case 3:
-        ManagerMenuController menu = new ManagerMenuController();
+        ManagerMenuController menu3 = new ManagerMenuController();
         break;
       case 4:
         // Accounting
