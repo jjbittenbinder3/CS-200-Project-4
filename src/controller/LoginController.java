@@ -2,22 +2,22 @@
   Author: James Pepper
 */
 
-public class LoginController() {
+public class LoginController {
   
-  enum type {
+  public enum Type {
     MEMBER,
     OPERATOR,
     PROVIDER,
     MANAGER
   }
   
-  public LoginController(type loginType) {
+  public LoginController(Type loginType) {
     switch (loginType) {
       case MEMBER:
         break;
       case OPERATOR:
         break;
-      case PROVIDER;
+      case PROVIDER:
         break;
       case MANAGER:
         break;
