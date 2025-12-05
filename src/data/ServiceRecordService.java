@@ -37,8 +37,8 @@ public class ServiceRecordService {
                 String billDate = s[4];
                 String comments = s[5];
 
-                ServiceRecord sr = new ServiceRecord();
-                sr.setAddress(address, city, state, zisr);
+                ServiceRecord sr = new ServiceRecord(servDate, provID, memID, servCode, comments);
+                sr.setDateBilled(billDate);
 
                 serviceRecords.put(id, sr);
             }
