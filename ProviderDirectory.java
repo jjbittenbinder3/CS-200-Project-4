@@ -101,11 +101,12 @@ public class ProviderDirectory {
     /**
      * Return the service name for a given code, or Optional.empty() if not found.
      */
-    public Optional<String> enterServiceCode(int code) {
+    public String enterServiceCode(int code) {
         return services.stream()
                 .filter(s -> s.getCode() == code)
                 .map(Service::getName)
-                .findFirst();
+                .findFirst()
+                .orElse("error");
     }
 
     /**
@@ -134,22 +135,21 @@ public class ProviderDirectory {
     public List<Service> getAllServices() {
         return new ArrayList<>(services);
     }
-
+    
 /* Example main (remove or adapt as needed) demonstrating manual population and file write:
     public static void main(String[] args) {
         ProviderDirectory dir = new ProviderDirectory();
 
         // Lookup example:
-        System.out.println(dir.getServiceName(598470).orElse("Not found"));
+        System.out.println(dir.enterServiceCode(000000));
 
         // Write to file example (change path as needed):
         try {
-            dir.writeDirectoryToFile(Path.of("provider_directory.txt"));
+            dir.sendDirectoryRequest(Path.of("provider_directory.txt"));
             System.out.println("Written provider_directory.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-} */
+}  */
 }
-
