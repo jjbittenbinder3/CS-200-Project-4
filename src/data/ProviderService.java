@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class ProviderService {
 
-    private HashMap<Integer, Member> providers = new HashMap<>();
+    private HashMap<Integer, Provider> providers = new HashMap<>();
     private final String FILE_NAME = "data/providers.csv";
 
     public ProviderService() {
@@ -26,23 +26,23 @@ public class ProviderService {
             String line;
 
             while ((line = br.readLine()) != null) {
-                String[] p = line.split(",");
+                String[] s = line.split(",");
 
-                if (p.length != 8) continue;
+                if (s.length != 8) continue;
 
-                int id = Integer.parseInt(p[0]);
-                String name = p[1];
-                String password = p[2];
-                String address = p[3];
-                String city = p[4];
-                String state = p[5];
-                String zip = p[6];
-                boolean suspended = Boolean.parseBoolean(p[7]);
+                int id = Integer.parseInt(s[0]);
+                String name = s[1];
+                String password = s[2];
+                String address = s[3];
+                String city = s[4];
+                String state = s[5];
+                String zip = s[6];
+                boolean suspended = Boolean.parseBoolean(s[7]);
 
                 Provider p = new Provider(name, id, password, suspended);
-                m.setAddress(address, city, state, zip);
+                p.setAddress(address, city, state, zip);
 
-                providers.put(id, m);
+                providers.put(id, p);
             }
 
         } catch (IOException e) {
@@ -72,7 +72,7 @@ public class ProviderService {
         }
     }
 
-    public Provider getProviders(int id) {
+    public Provider getProvider(int id) {
         return providers.get(id);
     }
 
