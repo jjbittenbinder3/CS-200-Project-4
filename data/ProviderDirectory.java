@@ -1,3 +1,7 @@
+/*
+Author: Lucas Cottrell
+*/
+
 package data;
 
 import java.io.BufferedWriter;
@@ -155,5 +159,6 @@ public class ProviderDirectory {
     }
 }  */
 }
+
 
 
