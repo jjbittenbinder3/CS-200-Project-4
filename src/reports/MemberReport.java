@@ -137,7 +137,7 @@ public class MemberReport {
             String state = p[5];
             String zip = p[6];
 
-            Provider provider = new Provider(name, id, password);
+            Provider provider = new Provider(name, id, password, false);
             provider.setAddress(address, city, state, zip);
 
             map.put(id, provider);
@@ -159,7 +159,7 @@ public class MemberReport {
             String name = p[1];
             double fee = Double.parseDouble(p[2]);
 
-            map.put(code, new Service(code, name, fee));
+            map.put(code, new Service(name, code, fee));
         }
         br.close();
         return map;
@@ -171,7 +171,7 @@ public class MemberReport {
 
         String line;
         while ((line = br.readLine()) != null) {
-            String[] p = line.split("\\t");
+            String[] p = line.split(",");
             if (p.length != 6) continue;
             list.add(p);
         }
