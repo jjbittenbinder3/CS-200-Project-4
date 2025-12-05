@@ -66,7 +66,12 @@ public class OperatorMenuController {
         String name = scanner.nextLine();
 
         System.out.print("ID (9 digits): ");
-        int id = getIntInput();
+        int id;
+        while (true) {
+            id = getIntInput();
+            if (String.valueOf(id).length() == 9) break;
+            else System.out.print("ID must be 9 digits. Enter ID (9 digits): ");
+        }
 
         System.out.print("Password: ");
         String password = scanner.nextLine();
@@ -146,7 +151,12 @@ public class OperatorMenuController {
         System.out.println("\n--- Validate Member ---");
 
         System.out.print("Enter Member ID: ");
-        int id = getIntInput();
+        int id;
+        while (true) {
+            id = getIntInput();
+            if (String.valueOf(id).length() == 9) break;
+            else System.out.print("ID must be 9 digits. Enter Member ID (9 digits): ");
+        }
 
         var member = memberService.getMember(id);
 
