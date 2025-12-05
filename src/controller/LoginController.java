@@ -1,5 +1,5 @@
 /*
-  Author: James Pepper
+  Author: James Pepper and Ryan Gammon
 */
 
 package controller;
