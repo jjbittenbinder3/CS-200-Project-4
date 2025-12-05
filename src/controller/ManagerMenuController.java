@@ -1,56 +1,87 @@
-/*
-  Author: James Pepper & James Zittlow
-*/
-
+// Author: James Zittlow
 package controller;
 
+import java.util.Scanner;
+import reports.MemberReport;
+import reports.ProviderReport;
+import reports.SummaryReport;
+
 public class ManagerMenuController {
-  
-  public ManagerMenuController()  {
-    showMenu();
-  }
-  
-  private void showMenu() {
-    int status = new LoginController().login(LoginController.Type.MANAGER);
-    switch (status) {
-      case 0:
-        System.out.println("Invalid manager ID entered.");
-        return;
-      case 1:
-        System.out.println("Invalid password entered.");
-        return;
-      case 2:
-        int input = 0;
-        while (input != 4) {
-          System.out.println("1. Member Report");
-          System.out.println("2. Provider Report");
-          System.out.println("3. Summary Report");
-          System.out.println("4. Exit");
-          Scanner scanner = new Scanner(System.in);
-          input = scanner.nextInt();
-          switch (input) {
-            case 1:
-              MemberReport memRep = new MemberReport();
-              System.out.println("Enter Member ID: ");
-              int memberID = scanner.nextInt();
-              memRep.generateMemberReport(memberID);
-              break;
-            case 2:
-              ProviderReport provRep = new ProviderReport();
-              System.out.println("Enter Provider ID: ");
-              int providerID = scanner.nextInt();
-              provRep.generateProviderReport(providerID);
-              break;
-            case 3:
-              SummaryReport sumRep = new SummaryReport();
-              sumRep.generateSummaryReport();
-              break;
-            case 4:
-              return;
-          }
-        }
-        scanner.close();
-        return;
+
+    private Scanner scanner = new Scanner(System.in);
+
+    public ManagerMenuController() {
+        showMenu();
     }
-  }
+
+    private void showMenu() {
+        int status = new LoginController().login(LoginController.Type.MANAGER);
+
+        switch (status) {
+            case 0 -> {
+                System.out.println("Invalid manager ID entered.");
+                return;
+            }
+            case 1 -> {
+                System.out.println("Invalid password entered.");
+                return;
+            }
+            case 2 -> managerMenu();
+        }
+    }
+
+    // MANAGER MAIN MENU
+    private void managerMenu() {
+        while (true) {
+            System.out.println("\n===== Manager Menu =====");
+            System.out.println("1. Generate Member Report");
+            System.out.println("2. Generate Provider Report");
+            System.out.println("3. Generate Summary Report");
+            System.out.println("0. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = getIntInput();
+
+            switch (choice) {
+                case 1 -> generateMemberReport();
+                case 2 -> generateProviderReport();
+                case 3 -> generateSummaryReport();
+                case 0 -> {
+                    System.out.println("Exiting Manager Menu...");
+                    return;
+                }
+                default -> System.out.println("Invalid option.");
+            }
+        }
+    }
+
+    // OPTION 1: MEMBER REPORT
+    private void generateMemberReport() {
+        System.out.print("Enter Member ID: ");
+        int id = getIntInput();
+        new MemberReport().generateMemberReport(id);
+    }
+
+    // OPTION 2: PROVIDER REPORT
+    private void generateProviderReport() {
+        System.out.print("Enter Provider ID: ");
+        int id = getIntInput();
+        new ProviderReport().generateProviderReport(id);
+    }
+
+    // OPTION 3: SUMMARY REPORT
+    private void generateSummaryReport() {
+        new SummaryReport().generateSummaryReport();
+    }
+
+    // Safe Int Input
+    private int getIntInput() {
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.nextLine().trim());
+            } catch (Exception e) {
+                System.out.print("Enter a valid number: ");
+            }
+        }
+    }
 }
