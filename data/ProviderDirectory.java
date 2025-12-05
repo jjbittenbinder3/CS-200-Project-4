@@ -114,6 +114,15 @@ public class ProviderDirectory {
                 .findFirst()
                 .orElse("error");
     }
+    /**
+     * Return the fee for a given service code, or Optional.empty() if not found.
+     */
+    public Optional<Double> getServiceFee(int code) {
+        return services.stream()
+                       .filter(s -> s.getCode() == code)
+                       .map(Service::getFee)
+                       .findFirst();
+    }
 
     /**
      * Write the directory to a text file at the given path.
@@ -159,6 +168,7 @@ public class ProviderDirectory {
     }
 }  */
 }
+
 
 
 
