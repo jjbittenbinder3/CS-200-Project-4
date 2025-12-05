@@ -4,6 +4,9 @@
 
 package controller;
 
+import data.MemberService;
+import java.util.Scanner;
+
 public class LoginController {
   
   public enum Type {
@@ -16,8 +19,23 @@ public class LoginController {
   public LoginController() {}
   
   public boolean login(Type loginType) {
+    Scanner scan = new Scanner(System.in);
+    
     switch (loginType) {
       case MEMBER:
+        System.out.print("Enter Member ID: ");
+        int inID = scan.nextInt()
+        Member mem = new MemberService().findMember(inID);
+        if (!mem) {
+          notFound(loginType);
+          return false;
+        }
+
+        if (mem.password == inPass) {
+          
+        } else {
+          
+        }
         break;
       case OPERATOR:
         break;
