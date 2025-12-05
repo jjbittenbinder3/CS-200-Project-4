@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class MemberService {
 
     private HashMap<Integer, Member> members = new HashMap<>();
-    private final String FILE_NAME = "members.csv";
+    private final String FILE_NAME = "data/members.csv";
 
     public MemberService() {
         loadMembersFromCSV();
