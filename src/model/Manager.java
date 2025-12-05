@@ -45,6 +45,11 @@ public class Manager {
     this.password = password;
   }
 
+  public void setContactInfo(String phoneNumber, String email) {
+    this.phoneNumber = phoneNumber;
+    this.email = email;
+  }
+
   //Getters
 
   public String getName() {
