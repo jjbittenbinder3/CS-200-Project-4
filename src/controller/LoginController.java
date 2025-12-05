@@ -13,7 +13,7 @@ public class LoginController {
     MANAGER
   }
   
-  public LoginController(Type loginType) {}
+  public LoginController() {}
   
   public boolean login(Type loginType) {
     switch (loginType) {
