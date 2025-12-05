@@ -33,7 +33,5 @@ public class MainMenuController {
       default:
         break;
     }
-
-    System.out.println("exiting terminal...");
   }
 }
