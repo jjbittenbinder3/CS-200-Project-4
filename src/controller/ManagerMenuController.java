@@ -2,9 +2,15 @@
 package controller;
 
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+// Report imports
 import reports.MemberReport;
 import reports.ProviderReport;
 import reports.SummaryReport;
+import reports.EFTReport;
+import reports.AccountingProcedure;
 
 public class ManagerMenuController {
 
@@ -38,6 +44,7 @@ public class ManagerMenuController {
             System.out.println("2. Generate Provider Report");
             System.out.println("3. Generate Summary Report");
             System.out.println("4. Generate EFT Report");
+            System.out.println("5. Run Weekly Accounting Procedure");
             System.out.println("0. Exit");
             System.out.print("Enter choice: ");
 
@@ -48,6 +55,7 @@ public class ManagerMenuController {
                 case 2 -> generateProviderReport();
                 case 3 -> generateSummaryReport();
                 case 4 -> generateEFTReport();
+                case 5 -> runAccountingProcedure();
                 case 0 -> {
                     System.out.println("Exiting Manager Menu...");
                     return;
@@ -78,8 +86,16 @@ public class ManagerMenuController {
 
     // OPTION 4: EFT REPORT
     private void generateEFTReport() {
-      EFTReport eftRep = new EFTReport();
-      eftRep.generateEFTReport();
+        String date = LocalDate.now()
+            .format(DateTimeFormatter.ofPattern("MM-dd-YYYY"));
+
+        new EFTReport().generateEFTReport(date);
+    }
+
+    // OPTION 5: RUN FULL ACCOUNTING PROCEDURE
+    private void runAccountingProcedure() {
+        AccountingProcedure ap = new AccountingProcedure();
+        ap.runWeeklyProcedure();
     }
 
     // Safe Int Input
