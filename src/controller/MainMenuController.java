@@ -33,5 +33,6 @@ public class MainMenuController {
       default:
         break;
     }
+    scanner.close();
   }
 }
