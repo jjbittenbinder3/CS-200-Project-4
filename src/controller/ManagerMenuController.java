@@ -10,7 +10,7 @@ public class ManagerMenuController {
     showMenu();
   }
   
-  private showMenu() {
+  private void showMenu() {
     int status = new LoginController().login(LoginController.Type.MANAGER);
     switch (status) {
       case 0:
@@ -30,25 +30,26 @@ public class ManagerMenuController {
           input = scanner.nextInt();
           switch (input) {
             case 1:
-              new MemberReport();
+              MemberReport memRep = new MemberReport();
               System.out.println("Enter Member ID: ");
-              int id = scanner.nextInt();
-              MemberReport.generateMemberReport(id);
+              int memberID = scanner.nextInt();
+              memRep.generateMemberReport(memberID);
               break;
             case 2:
-              new ProviderReport();
+              ProviderReport provRep = new ProviderReport();
               System.out.println("Enter Provider ID: ");
-              int id = scanner.nextInt();
-              ProviderReport.generateProviderReport(id);
+              int providerID = scanner.nextInt();
+              provRep.generateProviderReport(providerID);
               break;
             case 3:
-              new SummaryReport();
-              SummaryReport.generateSummaryReport();
+              SummaryReport sumRep = new SummaryReport();
+              sumRep.generateSummaryReport();
               break;
             case 4:
               return;
           }
         }
+        scanner.close();
         return;
     }
   }
