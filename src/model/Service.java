@@ -1,3 +1,7 @@
+/*
+  Author: James Pepper
+*/
+
 package model;
 
 public class Service {
