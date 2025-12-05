@@ -20,7 +20,8 @@ public class ManagerMenuController {
         System.out.println("Invalid password entered.");
         return;
       case 2:
-        
+        //here
+        return;
     }
     return;
   }
