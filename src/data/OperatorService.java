@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class OperatorService {
 
-    private HashMap<Integer, Member> operators = new HashMap<>();
+    private HashMap<Integer, Operator> operators = new HashMap<>();
     private final String FILE_NAME = "data/operators.csv";
 
     public OperatorService() {
@@ -26,23 +26,20 @@ public class OperatorService {
             String line;
 
             while ((line = br.readLine()) != null) {
-                String[] o = line.split(",");
+                String[] s = line.split(",");
 
-                if (o.length != 8) continue;
+                if (s.length != 8) continue;
 
-                int id = Integer.parseInt(o[0]);
-                String name = o[1];
-                String password = o[2];
-                String address = o[3];
-                String city = o[4];
-                String state = o[5];
-                String zio = o[6];
-                boolean suspended = Boolean.parseBoolean(o[7]);
+                int id = Integer.parseInt(s[0]);
+                String name = s[1];
+                String password = s[2];
+                String phoneNumber = s[3];
+                String email = s[4];
 
-                Operator o = new Operator(name, id, password, suspended);
-                m.setAddress(address, city, state, zio);
+                Operator o = new Operator(name, id, password);
+                o.setContactInfo(phoneNumber, email);
 
-                operators.put(id, m);
+                operators.put(id, o);
             }
 
         } catch (IOException e) {
@@ -58,21 +55,18 @@ public class OperatorService {
                     o.getID() + "," +
                     o.getName() + "," +
                     o.getPassword() + "," +
-                    o.getAddress() + "," +
-                    o.getCity() + "," +
-                    o.getState() + "," +
-                    o.getZip() + "," +
-                    o.getSuspended()
+                    o.getPhoneNumber() + "," +
+                    o.getEmail()
                 );
                 bw.newLine();
             }
 
         } catch (IOException e) {
-            System.out.println("Error saving operators.csv");
+            System.out.println("Error saving managers.csv");
         }
     }
 
-    public Operator getOperators(int id) {
+    public Operator getOperator(int id) {
         return operators.get(id);
     }
 
