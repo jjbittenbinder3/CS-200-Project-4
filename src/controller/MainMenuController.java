@@ -13,18 +13,19 @@ public class MainMenuController {
     Scanner scanner = new Scanner(System.in);
     int input = scanner.nextInt();
 
-    swtich (input) {
+    switch (input) {
       case 1:
-        OperatorMenuController menu1 = new OperatorMenuController();
+        new OperatorMenuController();
         break;
       case 2:
-        ProviderMenuController menu2 = new ProviderMenuController();
+        new ProviderMenuController();
         break;
       case 3:
-        ManagerMenuController menu3 = new ManagerMenuController();
+        new ManagerMenuController();
         break;
       case 4:
         // Accounting
+        break;
       default:
         break;
     }
