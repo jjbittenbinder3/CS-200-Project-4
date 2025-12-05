@@ -103,7 +103,7 @@ public class ProviderMenuController {
                 serviceCode = Integer.parseInt(sc);
             }
             String activity = directory.enterServiceCode(serviceCode);
-            System.out.println("The service provided was: " + activity + " ,is this correct?(y/n)");
+            System.out.println("The service provided was: " + activity + ", is this correct?(y/n)");
             String response = scanner.nextLine();
             if(response.equals("n")){
                 continue;
