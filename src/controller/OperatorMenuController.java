@@ -5,9 +5,7 @@
 package controller;
 
 public class OperatorMenuController {
-  public OperatorMenuController();
-  
-  public void showOperatorMenu() {
+  public OperatorMenuController() {
     System.out.println("");
     // here
   }
