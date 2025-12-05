@@ -1,5 +1,6 @@
-package model;
+package data;
 
+import model.Member;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -15,9 +16,7 @@ public class MemberService {
     public MemberService() {
         loadMembersFromCSV();
     }
-    // LOAD MEMBERS FROM CSV
-    // CSV format:
-    // ID,name,password,address,city,state,zip,suspended
+
     private void loadMembersFromCSV() {
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
@@ -47,7 +46,6 @@ public class MemberService {
         }
     }
 
-    // SAVE MEMBERS TO CSV
     private void saveMembersToCSV() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
 
@@ -69,8 +67,6 @@ public class MemberService {
             System.out.println("Error saving members.csv");
         }
     }
-
-    // MEMBER OPERATION
 
     public Member getMember(int id) {
         return members.get(id);
