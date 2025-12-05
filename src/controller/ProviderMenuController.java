@@ -3,8 +3,17 @@
 */
 
 package controller;
+import java.util.Scanner;
+
+import data.MemberService;
+import reports.MemberReport;
+import data.ProviderDirectory;
+
 
 public class ProviderMenuController {
+  private Scanner scanner = new Scanner(System.in);     
+  private MemberService memberService = new MemberService();
+  ProviderDirectory directory = new ProviderDirectory();
   public ProviderMenuController() {
     showMenu();
   }
@@ -28,10 +37,10 @@ public class ProviderMenuController {
     }
     return;
   }
-      private void operatorMenu() {
+      private void providerMenu() {
         while (true) {
             System.out.println("\n===== Operator Menu =====");
-            System.out.println("1. Add Member");
+            System.out.println("1. Bill Member");
             System.out.println("2. Remove Member");
             System.out.println("3. Update Member");
             System.out.println("4. Validate Member");
@@ -42,7 +51,7 @@ public class ProviderMenuController {
             int choice = getIntInput();
 
             switch (choice) {
-                case 1 -> addMember();
+                case 1 -> billMember();
                 case 2 -> removeMember();
                 case 3 -> updateMember();
                 case 4 -> validateMember();
@@ -56,17 +65,37 @@ public class ProviderMenuController {
         }
     }
     // OPTION 1: ADD MEMBER
-    private void addMember() {
-        System.out.println("\n--- Add Member ---");
+    private void billMember() {
+        System.out.println("\n--- Bill Member ---");
 
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
+        System.out.print("Enter member ID: ");
+        String id2 = scanner.nextLine();
+        int id = Integer.parseInt(id2);
+        boolean exists = memberService.memberExists(id);
+        var member = memberService.getMember(id);
+        if(exists){
+            if (member.getSuspended()) {
+                System.out.println("Member suspended.");
+                return;
+            }
+            else{
+                System.out.println("Validated");
+            }
+            
+        }
+        else{
+            System.out.println("Invalid number");
+        }
 
-        System.out.print("ID (9 digits): ");
-        int id = getIntInput();
+        System.out.print("Enter the date the service was provided in the following format: MM–DD–YYYY: ");
+        String provideDate = scanner.nextLine();
+        System.out.print("Please enter the appropraite service code: ");
+        String serviceCode = scanner.nextLine();
+        if(directory.(enterServiceCode).equals("error")){
 
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
+        }
+        else if
+
 
         System.out.print("Address: ");
         String address = scanner.nextLine();
