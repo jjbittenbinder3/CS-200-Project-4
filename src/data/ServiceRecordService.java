@@ -29,17 +29,15 @@ public class ServiceRecordService {
                 String[] s = line.split(",");
 
                 if (s.length != 6) continue;
+              
+                String provID = s[0];
+                String memID = s[1];
+                String servCode = s[2];
+                String servDate = s[3];
+                String billDate = s[4];
+                String comments = s[5];
 
-                int id = Integer.parseInt(s[0]);
-                String name = s[1];
-                String password = s[2];
-                String address = s[3];
-                String city = s[4];
-                String state = s[5];
-                String zisr = s[6];
-                boolean suspended = Boolean.parseBoolean(s[7]);
-
-                ServiceRecord sr = new ServiceRecord(name, id, password, suspended);
+                ServiceRecord sr = new ServiceRecord();
                 sr.setAddress(address, city, state, zisr);
 
                 serviceRecords.put(id, sr);
