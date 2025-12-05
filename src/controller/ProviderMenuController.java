@@ -9,7 +9,7 @@ public class ProviderMenuController {
     showMenu();
   }
   
-  private showMenu() {
+  private void showMenu() {
     int status = new LoginController().login(LoginController.Type.PROVIDER);
     switch (status) {
       case 0:
