@@ -3,6 +3,8 @@ package reports;
 
 import java.io.*;
 import java.util.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class EFTReport {
 
@@ -10,7 +12,7 @@ public class EFTReport {
     private static final String SERVICES_FILE = "data/services.csv";
     private static final String PROVIDERS_FILE = "data/providers.csv";
 
-    public void generateEFTReport(String dateString) {
+    public void generateEFTReport() {
 
         Map<Integer, Double> providerTotals = new HashMap<>();
         Map<Integer, String> providerNames = loadProviderNames();
@@ -21,8 +23,8 @@ public class EFTReport {
 
             while ((line = br.readLine()) != null) {
 
-                String[] p = line.split("\t"); // tab-separated
-                if (p.length < 6) continue;
+                String[] p = line.split(","); // tab-separated
+                if (p.length != 6) continue;
 
                 int providerID = Integer.parseInt(p[0]);
                 int serviceCode = Integer.parseInt(p[2]);
@@ -39,6 +41,8 @@ public class EFTReport {
         }
 
         // Write report
+        LocalDate today = LocalDate.now();
+        String dateString = today.format(DateTimeFormatter.ofPattern("MM-dd-YYYY"));
         String filename = "data/reports/EFT_" + dateString + ".txt";
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {

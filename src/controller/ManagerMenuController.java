@@ -37,6 +37,7 @@ public class ManagerMenuController {
             System.out.println("1. Generate Member Report");
             System.out.println("2. Generate Provider Report");
             System.out.println("3. Generate Summary Report");
+            System.out.println("4. Generate EFT Report");
             System.out.println("0. Exit");
             System.out.print("Enter choice: ");
 
@@ -46,6 +47,7 @@ public class ManagerMenuController {
                 case 1 -> generateMemberReport();
                 case 2 -> generateProviderReport();
                 case 3 -> generateSummaryReport();
+                case 4 -> generateEFTReport();
                 case 0 -> {
                     System.out.println("Exiting Manager Menu...");
                     return;
@@ -72,6 +74,12 @@ public class ManagerMenuController {
     // OPTION 3: SUMMARY REPORT
     private void generateSummaryReport() {
         new SummaryReport().generateSummaryReport();
+    }
+
+    // OPTION 4: EFT REPORT
+    private void generateEFTReport() {
+      EFTReport eftRep = new EFTReport();
+      eftRep.generateEFTReport();
     }
 
     // Safe Int Input
