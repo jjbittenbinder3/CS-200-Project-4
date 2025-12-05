@@ -101,7 +101,7 @@ public class ProviderDirectory {
     /**
      * Return the service name for a given code, or Optional.empty() if not found.
      */
-    public Optional<String> getServiceName(int code) {
+    public Optional<String> enterServiceCode(int code) {
         return services.stream()
                 .filter(s -> s.getCode() == code)
                 .map(Service::getName)
@@ -118,7 +118,7 @@ public class ProviderDirectory {
      *
      * Throws IOException on failure.
      */
-    public void writeDirectoryToFile(Path outputPath) throws IOException {
+    public void sendDirectoryRequest(Path outputPath) throws IOException {
         List<Service> sorted = new ArrayList<>(services);
         sorted.sort(Comparator.comparing(Service::getName, String.CASE_INSENSITIVE_ORDER));
 
@@ -152,3 +152,4 @@ public class ProviderDirectory {
     }
 } */
 }
+
