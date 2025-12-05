@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class ManagerService {
 
-    private HashMap<Integer, Member> managers = new HashMap<>();
+    private HashMap<Integer, Manager> managers = new HashMap<>();
     private final String FILE_NAME = "data/managers.csv";
 
     public ManagerService() {
@@ -26,21 +26,18 @@ public class ManagerService {
             String line;
 
             while ((line = br.readLine()) != null) {
-                String[] m = line.split(",");
+                String[] s = line.split(",");
 
-                if (m.length != 8) continue;
+                if (s.length != 8) continue;
 
-                int id = Integer.parseInt(m[0]);
-                String name = m[1];
-                String password = m[2];
-                String address = m[3];
-                String city = m[4];
-                String state = m[5];
-                String zim = m[6];
-                boolean suspended = Boolean.parseBoolean(m[7]);
+                int id = Integer.parseInt(s[0]);
+                String name = s[1];
+                String password = s[2];
+                String phoneNumber = s[3];
+                String email = s[4];
 
-                Manager m = new Manager(name, id, password, suspended);
-                m.setAddress(address, city, state, zim);
+                Manager m = new Manager(name, id, password);
+                m.setContactInfo(phoneNumber, email);
 
                 managers.put(id, m);
             }
@@ -58,11 +55,8 @@ public class ManagerService {
                     m.getID() + "," +
                     m.getName() + "," +
                     m.getPassword() + "," +
-                    m.getAddress() + "," +
-                    m.getCity() + "," +
-                    m.getState() + "," +
-                    m.getZip() + "," +
-                    m.getSuspended()
+                    m.getPhoneNumber() + "," +
+                    m.getEmail()
                 );
                 bw.newLine();
             }
