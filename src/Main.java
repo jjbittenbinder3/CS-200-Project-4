@@ -4,7 +4,7 @@
 
 import controller.MainMenuController;
 
-public class Main() {
+public class Main {
   public Main() {
     new MainMenuController();
   }
