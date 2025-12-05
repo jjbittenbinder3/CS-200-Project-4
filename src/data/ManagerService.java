@@ -28,7 +28,7 @@ public class ManagerService {
             while ((line = br.readLine()) != null) {
                 String[] s = line.split(",");
 
-                if (s.length != 8) continue;
+                if (s.length != 5) continue;
 
                 int id = Integer.parseInt(s[0]);
                 String name = s[1];
