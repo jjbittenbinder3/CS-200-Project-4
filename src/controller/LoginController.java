@@ -37,7 +37,7 @@ public class LoginController {
         if (mem == null) return 0;
           System.out.print("Enter password: ");
           inPass = scan.next();
-        if (mem.getPassword() != inPass) return 1;
+        if (!mem.getPassword().equals(inPass)) return 1;
         return 2;
         
       case OPERATOR:
@@ -47,7 +47,7 @@ public class LoginController {
         if (op == null) return 0;
           System.out.print("Enter password: ");
           inPass = scan.next();
-        if (op.getPassword() != inPass) return 1;
+        if (!op.getPassword().equals(inPass)) return 1;
         return 2;
         
       case PROVIDER:
@@ -57,7 +57,7 @@ public class LoginController {
         if (prov == null) return 0;
           System.out.print("Enter password: ");
           inPass = scan.next();
-        if (prov.getPassword() != inPass) return 1;
+        if (!prov.getPassword().equals(inPass)) return 1;
         return 2;
         
       case MANAGER:
