@@ -16,7 +16,7 @@ public class Service {
   
   public Service() {}
   
-  public Service(String name, String code, double fee) {
+  public Service(String name, int code, double fee) {
     this.name = name;
     this.code = code;
     this.fee = fee;
@@ -32,7 +32,7 @@ public class Service {
     this.code = code;
   }
   
-  public void setFee(int Fee) {
+  public void setFee(double fee) {
     this.fee = fee;
   }
   
@@ -46,7 +46,7 @@ public class Service {
     return this.code;
   }
 
-  public int getFee() {
+  public double getFee() {
     return this.fee;
   }
   
