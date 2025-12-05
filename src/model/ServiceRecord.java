@@ -67,11 +67,11 @@ public class ServiceRecord {
   }
   
   public Service getService() {
-    return dateBilled;
+    return service;
   }
   
   public String getComments() {
-    return dateBilled;
+    return comments;
   }
   
   //Setters
@@ -85,7 +85,7 @@ public class ServiceRecord {
   public String getRecord() {
     String result = "";
     result += dateProvided + "\n";
-    result += dateCurrent + "\n";
+    result += dateBilled + "\n";
     result += provider.getID() + "\n";
     result += member.getID() + "\n";
     result += service.getCode() + "\n";
