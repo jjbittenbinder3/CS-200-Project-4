@@ -79,6 +79,10 @@ public class ServiceRecord {
   public void setComments(String comments) {
     this.comments = comments;
   }
+
+  public void setDateBilled(String dateBilled) {
+    this.dateBilled = dateBilled;
+  }
   
   //Public Methods
   
