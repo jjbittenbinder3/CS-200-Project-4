@@ -5,9 +5,7 @@
 package controller;
 
 public class ManagerMenuController {
-  public ManagerMenuController();
-  
-  public void showManagerMenu() {
+  public ManagerMenuController()  {
     System.out.println("");
     // here
   }
