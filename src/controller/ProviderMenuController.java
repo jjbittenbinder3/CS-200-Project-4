@@ -6,7 +6,7 @@ package controller;
 
 public class ProviderMenuController {
   public ProviderMenuController() {
-    boolean valid = new LoginController()..login(LoginController.type.PROVIDER);
+    boolean valid = new LoginController().login(LoginController.Type.PROVIDER);
     if (!valid) return;
     System.out.println("");
     // here
