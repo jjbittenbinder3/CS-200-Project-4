@@ -2,6 +2,8 @@
   Author: James Pepper
 */
 
+package controller;
+
 public class LoginController {
   
   public enum Type {
