@@ -16,15 +16,12 @@ public class MainMenuController {
     swtich (input) {
       case 1:
         OperatorMenuController menu = new OperatorMenuController();
-        menu.showOperatorMenu();
         break;
       case 2:
         ProviderMenuController menu = new ProviderMenuController();
-        menu.showProviderMenu();
         break;
       case 3:
         ManagerMenuController menu = new ManagerMenuController();
-        menu.showManagerMenu();
         break;
       case 4:
         // Accounting
