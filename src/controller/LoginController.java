@@ -11,7 +11,9 @@ public class LoginController {
     MANAGER
   }
   
-  public LoginController(Type loginType) {
+  public LoginController(Type loginType) {}
+  
+  public boolean login(Type loginType) {
     switch (loginType) {
       case MEMBER:
         break;
