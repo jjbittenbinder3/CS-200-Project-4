@@ -28,7 +28,7 @@ public class ServiceRecordService {
             while ((line = br.readLine()) != null) {
                 String[] s = line.split(",");
 
-                if (s.length != 8) continue;
+                if (s.length != 6) continue;
 
                 int id = Integer.parseInt(s[0]);
                 String name = s[1];
