@@ -1,4 +1,4 @@
-//Author Jackson Lammons
+//Author Jackson Lammons & James Zittlow
 package reports;
 
 import model.Member;

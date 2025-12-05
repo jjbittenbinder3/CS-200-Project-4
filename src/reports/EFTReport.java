@@ -1,16 +1,17 @@
-// Author: Jackson Lammons
+// Author: Jackson Lammons & James Zittlow
 package reports;
 
 import java.io.*;
-import java.util.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class EFTReport {
 
     private static final String SERVICE_RECORDS_FILE = "data/ServiceRecords.csv";
     private static final String SERVICES_FILE = "data/services.csv";
     private static final String PROVIDERS_FILE = "data/providers.csv";
+    private final String REPORT_FOLDER = "data/reports/";
 
     public void generateEFTReport() {
 
@@ -23,7 +24,7 @@ public class EFTReport {
 
             while ((line = br.readLine()) != null) {
 
-                String[] p = line.split(","); // tab-separated
+                String[] p = line.split(",");
                 if (p.length != 6) continue;
 
                 int providerID = Integer.parseInt(p[0]);
@@ -45,6 +46,8 @@ public class EFTReport {
         String dateString = today.format(DateTimeFormatter.ofPattern("MM-dd-YYYY"));
         String filename = "data/reports/EFT_" + dateString + ".txt";
 
+        File folder = new File(REPORT_FOLDER);
+        if (!folder.exists()) folder.mkdirs();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
 
             bw.write("===== Electronic Funds Transfer Report =====\n\n");
@@ -70,7 +73,7 @@ public class EFTReport {
             System.out.println("EFT Report written to: " + filename);
 
         } catch (IOException e) {
-            System.out.println("Error writing EFT report.");
+            System.out.println("Error writing EFT report." + e.getMessage());
         }
     }
 
@@ -104,7 +107,7 @@ public class EFTReport {
 
             while ((line = br.readLine()) != null) {
                 String[] p = line.split(",");
-                if (p.length >= 2) {
+                if (p.length == 8) {
                     int id = Integer.parseInt(p[0]);
                     map.put(id, p[1]);
                 }
