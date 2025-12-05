@@ -1,7 +1,6 @@
 /*
-  Author: James Pepper and Ryan Gammon
+  Author: James Pepper
 */
-
 package controller;
 
 import data.*;
@@ -32,42 +31,42 @@ public class LoginController {
     switch (loginType) {
       case MEMBER:
         System.out.print("Enter Member ID: ");
-        inID = scan.nextInt();
+        inID = Integer.parseInt(scan.nextLine());
         Member mem = new MemberService().getMember(inID);
         if (mem == null) return 0;
           System.out.print("Enter password: ");
-          inPass = scan.next();
+          inPass = scan.nextLine();
         if (!mem.getPassword().equals(inPass)) return 1;
         return 2;
         
       case OPERATOR:
         System.out.print("Enter Operator ID: ");
-        inID = scan.nextInt();
+        inID = Integer.parseInt(scan.nextLine());
         Operator op = new OperatorService().getOperator(inID);
         if (op == null) return 0;
           System.out.print("Enter password: ");
-          inPass = scan.next();
+          inPass = scan.nextLine();
         if (!op.getPassword().equals(inPass)) return 1;
         return 2;
         
       case PROVIDER:
         System.out.print("Enter Provider ID: ");
-        inID = scan.nextInt();
+        inID = Integer.parseInt(scan.nextLine());
         Provider prov = new ProviderService().getProvider(inID);
         if (prov == null) return 0;
           System.out.print("Enter password: ");
-          inPass = scan.next();
+          inPass = scan.nextLine();
         if (!prov.getPassword().equals(inPass)) return 1;
         return 2;
         
       case MANAGER:
         System.out.print("Enter Manager ID: ");
-        inID = scan.nextInt();
+        inID = Integer.parseInt(scan.nextLine());
         Manager man = new ManagerService().getManager(inID);
         if (man == null) return 0;
           System.out.print("Enter password: ");
-          inPass = scan.next();
-        if (man.getPassword() != inPass) return 1;
+          inPass = scan.nextLine();
+        if (!man.getPassword().equals(inPass)) return 1;
         return 2;
         
       default:
