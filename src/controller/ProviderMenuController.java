@@ -5,9 +5,7 @@
 package controller;
 
 public class ProviderMenuController {
-  public ProviderMenuController();
-  
-  public void showProviderMenu() {
+  public ProviderMenuController() {
     System.out.println("");
     // here
   }
