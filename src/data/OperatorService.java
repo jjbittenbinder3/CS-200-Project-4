@@ -28,7 +28,7 @@ public class OperatorService {
             while ((line = br.readLine()) != null) {
                 String[] s = line.split(",");
 
-                if (s.length != 8) continue;
+                if (s.length != 5) continue;
 
                 int id = Integer.parseInt(s[0]);
                 String name = s[1];
@@ -62,7 +62,7 @@ public class OperatorService {
             }
 
         } catch (IOException e) {
-            System.out.println("Error saving managers.csv");
+            System.out.println("Error saving operators.csv");
         }
     }
 
