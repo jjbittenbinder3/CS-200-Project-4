@@ -25,21 +25,21 @@ public class ProviderDirectory {
     private final List<Service> services = new ArrayList<>();
     private final DecimalFormat feeFormat = new DecimalFormat("#0.00");
 
-    // Initialize directory from provider_directory_database.txt if present, otherwise fall back to defaults
+    // Initialize directory from services.csv if present, otherwise fall back to defaults
     {
-        Path db = Path.of("provider_directory_database.txt");
+        Path db = Path.of("services.csv");
         if (Files.exists(db)) {
             try (java.util.stream.Stream<String> stream = Files.lines(db, StandardCharsets.UTF_8)) {
                 stream.map(String::trim)
                       .filter(l -> !l.isEmpty() && !l.startsWith("#"))
                       .forEach(l -> {
-                          String[] parts = l.split(",", 3);
+                          String[] parts = l.split(",", 3); // format: code,name,fee
                           if (parts.length < 3) {
                               System.err.println("Skipping malformed line: " + l);
                               return;
                           }
-                          String name = parts[0].trim();
-                          String codeStr = parts[1].trim();
+                          String codeStr = parts[0].trim();
+                          String name = parts[1].trim();
                           String feeStr = parts[2].trim();
                           try {
                               int code = Integer.parseInt(codeStr);
@@ -50,7 +50,7 @@ public class ProviderDirectory {
                           }
                       });
             } catch (IOException e) {
-                System.err.println("Failed to read provider_directory_database.txt: " + e.getMessage());
+                System.err.println("Failed to read services.csv: " + e.getMessage());
                 // fall through to defaults if desired
                 addService("Session with Dietitian", 598470, 85.00);
                 addService("Aerobics Exercise Session", 883948, 65.00);
@@ -168,7 +168,3 @@ public class ProviderDirectory {
     }
 }  */
 }
-
-
-
-
