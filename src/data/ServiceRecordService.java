@@ -15,7 +15,7 @@ import java.util.Vector;
 public class ServiceRecordService {
 
     private Vector<ServiceRecord> serviceRecords = new Vector<ServiceRecord>();
-    private final String FILE_NAME = "data/serviceRecords.csv";
+    private final String FILE_NAME = "data/ServiceRecords.csv";
 
     public ServiceRecordService() {
         loadServiceRecordsFromCSV();
