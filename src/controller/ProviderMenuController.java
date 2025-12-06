@@ -9,6 +9,7 @@ import data.MemberService;
 import reports.MemberReport;
 import data.ProviderDirectory;
 import model.ServiceRecord;
+import data.ServiceRecordService
 
 
 public class ProviderMenuController {
@@ -43,9 +44,6 @@ public class ProviderMenuController {
         System.out.println("\n===== Operator Menu =====");
         System.out.println("1. Bill Member");
         System.out.println("2. Generate Report");
-        System.out.println("3. Update Member");
-        System.out.println("4. Validate Member");
-        System.out.println("5. Generate Member Report");
         System.out.println("0. Exit");
         System.out.print("Enter choice: ");
 
@@ -54,9 +52,6 @@ public class ProviderMenuController {
         switch (choice) {
             case 1 -> billMember(providerID);
             case 2 -> generateReport();
-            case 3 -> updateMember();
-            case 4 -> validateMember();
-            case 5 -> generateMemberReport();
             case 0 -> {
                 System.out.println("Exiting Operator Menu...");
                 return;
@@ -119,73 +114,16 @@ public class ProviderMenuController {
         String provider = String.valueOf(providerID);
         String newID = String.valueOf(id);
         ServiceRecord sr = new ServiceRecord(provideDate, provider, newID, serviceCode, comment);
+        ServiceRecordService srs = new ServiceRecordService();
+        srs.addServiceRecord(sr);
     }
     // OPTION 2: REMOVE MEMBER
-    private void generateReport() 
+    private void generateReport(){
         directory.sendDirectoryRequest("/emails");
     }
     // OPTION 3: UPDATE MEMBER
-    private void updateMember() {
-        System.out.println("\n--- Update Member ---");
 
-        System.out.print("Enter Member ID: ");
-        int id = getIntInput();
 
-        var member = memberService.getMember(id);
-        if (member == null) {
-            System.out.println("Member not found.");
-            return;
-        }
-
-        System.out.print("New Name: ");
-        member.setInfo(scanner.nextLine(), id, member.getPassword());
-
-        System.out.print("New Address: ");
-        String address = scanner.nextLine();
-
-        System.out.print("City: ");
-        String city = scanner.nextLine();
-
-        System.out.print("State: ");
-        String state = scanner.nextLine();
-
-        System.out.print("ZIP: ");
-        String zip = scanner.nextLine();
-
-        member.setAddress(address, city, state, zip);
-
-        memberService.updateMember(member);
-
-        System.out.println("Member updated.");
-    }
-    // OPTION 4: VALIDATE MEMBER
-    private void validateMember() {
-        System.out.println("\n--- Validate Member ---");
-
-        System.out.print("Enter Member ID: ");
-        int id = getIntInput();
-
-        var member = memberService.getMember(id);
-
-        if (member == null) {
-            System.out.println("Invalid number.");
-            return;
-        }
-
-        if (member.getSuspended()) {
-            System.out.println("Member suspended.");
-            return;
-        }
-
-        System.out.println("Validated.");
-    }
-    // OPTION 5: MEMBER REPORT
-    private void generateMemberReport() {
-        System.out.print("Enter Member ID: ");
-        int id = getIntInput();
-
-        new MemberReport().generateMemberReport(id);
-    }
     // Safe Int Input
     private int getIntInput() {
         while (true) {
@@ -197,4 +135,4 @@ public class ProviderMenuController {
         }
     }
 }
-}
+
