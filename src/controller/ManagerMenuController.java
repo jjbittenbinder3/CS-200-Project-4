@@ -89,7 +89,7 @@ public class ManagerMenuController {
         String date = LocalDate.now()
             .format(DateTimeFormatter.ofPattern("MM-dd-YYYY"));
 
-        new EFTReport().generateEFTReport(date);
+        new EFTReport().generateEFTReport();
     }
 
     // OPTION 5: RUN FULL ACCOUNTING PROCEDURE
