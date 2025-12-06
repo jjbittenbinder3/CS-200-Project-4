@@ -53,7 +53,7 @@ public class ProviderMenuController {
 
         switch (choice) {
             case 1 -> billMember(providerID);
-            case 2 -> removeMember();
+            case 2 -> generateReport();
             case 3 -> updateMember();
             case 4 -> validateMember();
             case 5 -> generateMemberReport();
@@ -66,7 +66,7 @@ public class ProviderMenuController {
     }
     }
     // OPTION 1: ADD MEMBER
-    private void billMember(String providerID) {
+    private void billMember(int providerID) {
         System.out.println("\n--- Bill Member ---");
 
         System.out.print("Enter member ID: ");
@@ -117,22 +117,12 @@ public class ProviderMenuController {
         String comment = scanner.nextLine();
         comment = comment.substring(0, 100);
         String provider = String.valueOf(providerID);
-        ServiceRecord sr = new ServiceRecord(provideDate, provider, id, serviceCode, comment);
+        String newID = String.valueOf(id);
+        ServiceRecord sr = new ServiceRecord(provideDate, provider, newID, serviceCode, comment);
     }
     // OPTION 2: REMOVE MEMBER
-    private void removeMember() {
-        System.out.println("\n--- Remove Member ---");
-
-        System.out.print("Enter Member ID: ");
-        int id = getIntInput();
-
-        if (!memberService.memberExists(id)) {
-            System.out.println("Member does not exist.");
-            return;
-        }
-
-        memberService.removeMember(id);
-        System.out.println("Member removed.");
+    private void generateReport() 
+        directory.sendDirectoryRequest("/emails");
     }
     // OPTION 3: UPDATE MEMBER
     private void updateMember() {
