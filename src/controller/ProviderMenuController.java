@@ -97,6 +97,7 @@ public class ProviderMenuController {
             }
             String activity = directory.enterServiceCode(serviceCode);
             System.out.println("The service provided was: " + activity + " ,is this correct?(y/n)");
+            String cleary = scanner.nextLine();
             String response = scanner.nextLine();
             if(response.equals("n")){
                 continue;
@@ -108,7 +109,6 @@ public class ProviderMenuController {
         }
         System.out.println("Optional: You may enter a comment to attach to this record (100 character limit). Press Enter to continue: ");
         String comment = scanner.nextLine();
-        comment = comment.substring(0, 100);
         String provider = String.valueOf(providerID);
         String newID = String.valueOf(id);
         ServiceRecord sr = new ServiceRecord(provideDate, provider, newID, serviceCode, comment);
