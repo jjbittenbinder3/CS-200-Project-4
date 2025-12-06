@@ -27,7 +27,7 @@ public class ProviderDirectory {
 
     // Initialize directory from services.csv if present, otherwise fall back to defaults
     {
-        Path db = Path.of("services.csv");
+        Path db = Path.of("data/services.csv");
         if (Files.exists(db)) {
             try (java.util.stream.Stream<String> stream = Files.lines(db, StandardCharsets.UTF_8)) {
                 stream.map(String::trim)
@@ -51,20 +51,9 @@ public class ProviderDirectory {
                       });
             } catch (IOException e) {
                 System.err.println("Failed to read services.csv: " + e.getMessage());
-                // fall through to defaults if desired
-                addService("Session with Dietitian", 598470, 85.00);
-                addService("Aerobics Exercise Session", 883948, 65.00);
-                addService("Group Counseling", 402782, 40.00);
-                addService("Session with Internist", 349287, 85.00);
-                addService("Session with Health Care", 126159, 110.00);
             }
         } else {
-            // defaults if file not found
-            addService("Session with Dietitian", 598470, 85.00);
-            addService("Aerobics Exercise Session", 883948, 65.00);
-            addService("Group Counseling", 402782, 40.00);
-            addService("Session with Internist", 349287, 85.00);
-            addService("Session with Health Care", 126159, 110.00);
+            System.out.println("Failed to find services.csv.");
         }
     }
 
@@ -168,3 +157,4 @@ public class ProviderDirectory {
     }
 }  */
 }
+
