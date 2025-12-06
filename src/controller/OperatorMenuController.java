@@ -25,7 +25,7 @@ public class OperatorMenuController {
             case 1:
                 System.out.println("Invalid password entered.");
                 return;
-            case 2:
+            default:
                 operatorMenu();
                 return;
         }
