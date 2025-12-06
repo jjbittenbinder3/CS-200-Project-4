@@ -41,7 +41,7 @@ public class ProviderMenuController {
   }
     private void providerMenu(int providerID) {
     while (true) {
-        System.out.println("\n===== Operator Menu =====");
+        System.out.println("\n===== Provider Menu =====");
         System.out.println("1. Bill Member");
         System.out.println("2. Generate Report");
         System.out.println("0. Exit");
