@@ -72,4 +72,8 @@ public class ServiceRecordService {
         serviceRecords.add(sr);
         saveServiceRecordsToCSV();
     }
+
+    public Vector<ServiceRecord> getAllServiceRecords() {
+        return serviceRecords;
+    }
 }
