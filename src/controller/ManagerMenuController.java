@@ -32,7 +32,7 @@ public class ManagerMenuController {
                 System.out.println("Invalid password entered.");
                 return;
             }
-            case 2 -> managerMenu();
+            default -> managerMenu();
         }
     }
 
