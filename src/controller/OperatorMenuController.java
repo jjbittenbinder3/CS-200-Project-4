@@ -204,8 +204,20 @@ public class OperatorMenuController {
         System.out.print("Enter provider password: ");
         String password = scanner.nextLine();
         
+        System.out.print("Address: ");
+        String address = scanner.nextLine();
+
+        System.out.print("City: ");
+        String city = scanner.nextLine();
+
+        System.out.print("State: ");
+        String state = scanner.nextLine();
+
+        System.out.print("ZIP: ");
+        String zip = scanner.nextLine();
 
         Provider newProvider = new Provider(name, id, password, false);
+        newProvider.setAddress(address, city, state, zip);
         ProviderService ps = new ProviderService();
         ps.addProvider(newProvider);
     }
@@ -231,9 +243,25 @@ public class OperatorMenuController {
         Provider provider = ps.getProvider(id);
         if (provider != null) {
             System.out.print("Enter new provider name: ");
+
             String name = scanner.nextLine();
+
+            System.out.print("New Address: ");
+            String address = scanner.nextLine();
+
+            System.out.print("City: ");
+            String city = scanner.nextLine();
+
+            System.out.print("State: ");
+            String state = scanner.nextLine();
+
+            System.out.print("ZIP: ");
+            String zip = scanner.nextLine();
+
             provider.setInfo(name, id, provider.getPassword());
+            provider.setAddress(address, city, state, zip);
             ps.updateProvider(provider);
+
             System.out.println("Provider updated.");
         } else {
             System.out.println("Provider not found.");
