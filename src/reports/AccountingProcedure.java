@@ -33,7 +33,7 @@ public class AccountingProcedure {
         summaryReport.generateSummaryReport();
 
         System.out.println("Generating EFT Report...");
-        eftReport.generateEFTReport(date);
+        eftReport.generateEFTReport();
 
         System.out.println("===== ACCOUNTING PROCEDURE COMPLETE =====\n");
     }
