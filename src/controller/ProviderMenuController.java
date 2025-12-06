@@ -117,7 +117,7 @@ public class ProviderMenuController {
     }
     // OPTION 2: REMOVE MEMBER
     private void generateReport(){
-        Path filePath = Paths.get("data", "emails");
+        Path filePath = Paths.get("data", "emails.txt");
         try {
             directory.sendDirectoryRequest(filePath);
         } catch (Exception e) {
