@@ -89,13 +89,11 @@ public class ProviderMenuController {
         while(true)
         {
             System.out.print("Please enter the appropriate service code: ");
-            String sc = scanner.nextLine();
-            serviceCode = Integer.parseInt(sc);
+            serviceCode = scanner.nextInt();
             while(directory.enterServiceCode(serviceCode).equals("error"))
             {
                 System.out.print("The ID you entered is not a valid service code. Please try again: ");
-                sc = scanner.nextLine();
-                serviceCode = Integer.parseInt(sc);
+                serviceCode = scanner.nextInt();
             }
             String activity = directory.enterServiceCode(serviceCode);
             System.out.println("The service provided was: " + activity + " ,is this correct?(y/n)");
