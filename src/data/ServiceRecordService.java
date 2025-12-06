@@ -14,7 +14,7 @@ import java.util.Vector;
 
 public class ServiceRecordService {
 
-    private vector<ServiceRecord> serviceRecords = new vector<ServiceRecord>;
+    private Vector<ServiceRecord> serviceRecords = new Vector<ServiceRecord>();
     private final String FILE_NAME = "data/serviceRecords.csv";
 
     public ServiceRecordService() {
@@ -37,10 +37,10 @@ public class ServiceRecordService {
                 String billDate = s[4];
                 String comments = s[5];
 
-                ServiceRecord sr = new ServiceRecord(servDate, provID, memID, servCode, comments);
+                ServiceRecord sr = new ServiceRecord(servDate, provID, memID, Integer.parseInt(servCode), comments);
                 sr.setDateBilled(billDate);
 
-                serviceRecords.push_back(sr);
+                serviceRecords.add(sr);
             }
 
         } catch (IOException e) {
@@ -53,14 +53,12 @@ public class ServiceRecordService {
 
             for (ServiceRecord sr : serviceRecords) {
                 bw.write(
-                    sr.getID() + "," +
-                    sr.getName() + "," +
-                    sr.getPassword() + "," +
-                    sr.getAddress() + "," +
-                    sr.getCity() + "," +
-                    sr.getState() + "," +
-                    sr.getZip() + "," +
-                    sr.getSuspended()
+                    sr.getProvider() + "," +
+                    sr.getMember() + "," +
+                    sr.getService() + "," +
+                    sr.getDateProvided() + "," +
+                    sr.getDateBilled() + "," +
+                    sr.getComments()
                 );
                 bw.newLine();
             }
@@ -71,7 +69,7 @@ public class ServiceRecordService {
     }
 
     public void addServiceRecord(ServiceRecord sr) {
-        serviceRecords.push_back(sr);
+        serviceRecords.add(sr);
         saveServiceRecordsToCSV();
     }
 }
