@@ -28,7 +28,8 @@ public class MainMenuController {
         new ManagerMenuController();
         break;
       case 4:
-        // Accounting
+        AccountingProcedure accProc = new AccountingProcedure();
+        accProc.runWeeklyProcedure();
         break;
       default:
         break;
