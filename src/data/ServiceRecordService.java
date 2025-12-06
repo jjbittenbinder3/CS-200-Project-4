@@ -10,11 +10,11 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Vector;
 
 public class ServiceRecordService {
 
-    private HashMap<Integer, ServiceRecord> serviceRecords = new HashMap<>();
+    private vector<ServiceRecord> serviceRecords = new vector<ServiceRecord>;
     private final String FILE_NAME = "data/serviceRecords.csv";
 
     public ServiceRecordService() {
@@ -40,7 +40,7 @@ public class ServiceRecordService {
                 ServiceRecord sr = new ServiceRecord(servDate, provID, memID, servCode, comments);
                 sr.setDateBilled(billDate);
 
-                serviceRecords.put(id, sr);
+                serviceRecords.push_back(sr);
             }
 
         } catch (IOException e) {
@@ -51,7 +51,7 @@ public class ServiceRecordService {
     private void saveServiceRecordsToCSV() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
 
-            for (ServiceRecord sr : serviceRecords.values()) {
+            for (ServiceRecord sr : serviceRecords) {
                 bw.write(
                     sr.getID() + "," +
                     sr.getName() + "," +
@@ -70,26 +70,8 @@ public class ServiceRecordService {
         }
     }
 
-    public ServiceRecord getServiceRecord(int id) {
-        return serviceRecords.get(id);
-    }
-
     public void addServiceRecord(ServiceRecord sr) {
-        serviceRecords.put(sr.getID(), sr);
+        serviceRecords.push_back(sr);
         saveServiceRecordsToCSV();
-    }
-
-    public void updateServiceRecord(ServiceRecord sr) {
-        serviceRecords.put(sr.getID(), sr);
-        saveServiceRecordsToCSV();
-    }
-
-    public void removeServiceRecord(int id) {
-        serviceRecords.remove(id);
-        saveServiceRecordsToCSV();
-    }
-
-    public boolean serviceRecordExists(int id) {
-        return serviceRecords.containsKey(id);
     }
 }
