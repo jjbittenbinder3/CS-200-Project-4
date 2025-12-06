@@ -1,15 +1,17 @@
 /*
-  Author: Ryan Gammon
+  Author: Ryan Gammon and Lucas Cottrell
 */
 
 package controller;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 import data.MemberService;
 import reports.MemberReport;
 import data.ProviderDirectory;
 import model.ServiceRecord;
-import data.ServiceRecordService
+import data.ServiceRecordService;
 
 
 public class ProviderMenuController {
@@ -35,9 +37,7 @@ public class ProviderMenuController {
         //bill member
         
         //here
-        return;
     }
-    return;
   }
     private void providerMenu(int providerID) {
     while (true) {
@@ -119,7 +119,14 @@ public class ProviderMenuController {
     }
     // OPTION 2: REMOVE MEMBER
     private void generateReport(){
-        directory.sendDirectoryRequest("/emails");
+        Path filePath = Paths.get("data", "emails");
+        try {
+            directory.sendDirectoryRequest(filePath);
+        } catch (Exception e) {
+            System.out.println("Error generating report: " + e.getMessage());
+            return;
+        }
+        
     }
     // OPTION 3: UPDATE MEMBER
 
