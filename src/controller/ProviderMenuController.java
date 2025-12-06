@@ -20,8 +20,7 @@ public class ProviderMenuController {
   }
   
   private void showMenu() {
-    int providerID = 0;
-    int status = new LoginController().login(LoginController.Type.PROVIDER, providerID);
+    int status = new LoginController().login(LoginController.Type.PROVIDER);
     switch (status) {
       case 0:
         System.out.println("Invalid provider ID entered.");
@@ -29,8 +28,8 @@ public class ProviderMenuController {
       case 1:
         System.out.println("Invalid password entered.");
         return;
-      case 2:
-        providerMenu();
+      default:
+        providerMenu(status);
         return;
         //bill member
         
@@ -39,35 +38,35 @@ public class ProviderMenuController {
     }
     return;
   }
-      private void providerMenu() {
-        while (true) {
-            System.out.println("\n===== Operator Menu =====");
-            System.out.println("1. Bill Member");
-            System.out.println("2. Generate Report");
-            System.out.println("3. Update Member");
-            System.out.println("4. Validate Member");
-            System.out.println("5. Generate Member Report");
-            System.out.println("0. Exit");
-            System.out.print("Enter choice: ");
+    private void providerMenu(int providerID) {
+    while (true) {
+        System.out.println("\n===== Operator Menu =====");
+        System.out.println("1. Bill Member");
+        System.out.println("2. Generate Report");
+        System.out.println("3. Update Member");
+        System.out.println("4. Validate Member");
+        System.out.println("5. Generate Member Report");
+        System.out.println("0. Exit");
+        System.out.print("Enter choice: ");
 
-            int choice = getIntInput();
+        int choice = getIntInput();
 
-            switch (choice) {
-                case 1 -> billMember();
-                case 2 -> removeMember();
-                case 3 -> updateMember();
-                case 4 -> validateMember();
-                case 5 -> generateMemberReport();
-                case 0 -> {
-                    System.out.println("Exiting Operator Menu...");
-                    return;
-                }
-                default -> System.out.println("Invalid option.");
+        switch (choice) {
+            case 1 -> billMember(providerID);
+            case 2 -> removeMember();
+            case 3 -> updateMember();
+            case 4 -> validateMember();
+            case 5 -> generateMemberReport();
+            case 0 -> {
+                System.out.println("Exiting Operator Menu...");
+                return;
             }
+            default -> System.out.println("Invalid option.");
         }
     }
+    }
     // OPTION 1: ADD MEMBER
-    private void billMember() {
+    private void billMember(String providerID) {
         System.out.println("\n--- Bill Member ---");
 
         System.out.print("Enter member ID: ");
@@ -91,11 +90,12 @@ public class ProviderMenuController {
 
         System.out.print("Enter the date the service was provided in the following format: MM–DD–YYYY: ");
         String provideDate = scanner.nextLine();
+        int serviceCode;
         while(true)
         {
             System.out.print("Please enter the appropriate service code: ");
             String sc = scanner.nextLine();
-            int serviceCode = Integer.parseInt(sc);
+            serviceCode = Integer.parseInt(sc);
             while(directory.enterServiceCode(serviceCode).equals("error"))
             {
                 System.out.print("The ID you entered is not a valid service code. Please try again: ");
@@ -103,7 +103,7 @@ public class ProviderMenuController {
                 serviceCode = Integer.parseInt(sc);
             }
             String activity = directory.enterServiceCode(serviceCode);
-            System.out.println("The service provided was: " + activity + ", is this correct?(y/n)");
+            System.out.println("The service provided was: " + activity + " ,is this correct?(y/n)");
             String response = scanner.nextLine();
             if(response.equals("n")){
                 continue;
@@ -116,31 +116,8 @@ public class ProviderMenuController {
         System.out.println("Optional: You may enter a comment to attach to this record (100 character limit). Press Enter to continue: ");
         String comment = scanner.nextLine();
         comment = comment.substring(0, 100);
-
-        ServiceRecord sr = new ServiceRecord(provideDate, providerID);
-
-
-
-        System.out.print("Address: ");
-        String address = scanner.nextLine();
-
-        System.out.print("City: ");
-        String city = scanner.nextLine();
-
-        System.out.print("State: ");
-        String state = scanner.nextLine();
-
-        System.out.print("ZIP: ");
-        String zip = scanner.nextLine();
-
-        boolean suspended = false;
-
-        var m = new model.Member(name, id, password, suspended);
-        m.setAddress(address, city, state, zip);
-
-        memberService.addMember(m);
-
-        System.out.println("Member added successfully.");
+        String provider = String.valueOf(providerID);
+        ServiceRecord sr = new ServiceRecord(provideDate, provider, id, serviceCode, comment);
     }
     // OPTION 2: REMOVE MEMBER
     private void removeMember() {
