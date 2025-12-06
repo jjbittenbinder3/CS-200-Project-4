@@ -3,6 +3,8 @@ package controller;
 
 import data.MemberService;
 import reports.MemberReport;
+import model.Provider;
+import data.ProviderService;
 
 import java.util.Scanner;
 
@@ -39,6 +41,9 @@ public class OperatorMenuController {
             System.out.println("3. Update Member");
             System.out.println("4. Validate Member");
             System.out.println("5. Generate Member Report");
+            System.out.println("6. Add Provider");
+            System.out.println("7. Remove Provider");
+            System.out.println("8. Update Provider");
             System.out.println("0. Exit");
             System.out.print("Enter choice: ");
 
@@ -50,6 +55,9 @@ public class OperatorMenuController {
                 case 3 -> updateMember();
                 case 4 -> validateMember();
                 case 5 -> generateMemberReport();
+                case 6 -> addProvider();
+                case 7 -> removeProvider();
+                case 8 -> updateProvider();
                 case 0 -> {
                     System.out.println("Exiting Operator Menu...");
                     return;
@@ -179,6 +187,60 @@ public class OperatorMenuController {
 
         new MemberReport().generateMemberReport(id);
     }
+    
+    // OPTION 6: ADD PROVIDER
+    private void addProvider() {
+        System.out.print("Enter provider name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter provider ID: ");
+        int id;
+        while (true) {
+            id = getIntInput();
+            if (String.valueOf(id).length() == 9) break;
+            else System.out.print("ID must be 9 digits. Enter Member ID (9 digits): ");
+        }
+
+        System.out.print("Enter provider password: ");
+        String password = scanner.nextLine();
+        
+
+        Provider newProvider = new Provider(name, id, password, false);
+        ProviderService ps = new ProviderService();
+        ps.addProvider(newProvider);
+    }
+
+    // OPTION 7: REMOVE PROVIDER
+    private void removeProvider() {
+        System.out.print("Enter provider ID to remove: ");
+        int id = getIntInput();
+        ProviderService ps = new ProviderService();
+        if (ps.providerExists(id)) {
+            ps.removeProvider(id);
+            System.out.println("Provider removed.");
+        } else {
+            System.out.println("Provider not found.");
+        }
+    }
+
+    // OPTION 8: UPDATE PROVIDER
+    private void updateProvider() {
+        System.out.print("Enter provider ID to update: ");
+        int id = getIntInput();
+        ProviderService ps = new ProviderService();
+        Provider provider = ps.getProvider(id);
+        if (provider != null) {
+            System.out.print("Enter new provider name: ");
+            String name = scanner.nextLine();
+            provider.setInfo(name, id, provider.getPassword());
+            ps.updateProvider(provider);
+            System.out.println("Provider updated.");
+        } else {
+            System.out.println("Provider not found.");
+        }
+    }
+
+
     // Safe Int Input
     private int getIntInput() {
         while (true) {
